@@ -13,4 +13,7 @@
       when: tmp_usedpercent.stdout|float > 80
 
     - debug:
-        msg: "System Disk Usage {{ tmp_usedpercent }}"
+        msg: "System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}"
+        
+    - debug:
+        msg: "System Disk Usage {{ tmp_usedpercent.stdout }}"
