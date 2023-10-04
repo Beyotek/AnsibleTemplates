@@ -5,9 +5,9 @@
   
   tasks:
     - name: Check /tmp freespace
-      shell: df /tmp --output\=avail | tail -1
-      register: tmp_freespace
+      shell: df /tmp --output\=pcent | tail -1
+      register: tmp_usedpercent
         
     - fail:
         msg: /tmp does not have the minimum space required to continue (3Gb requested). 
-      when: tmp_freespace.stdout|float is lt 3000000
+      when: tmp_usedpercent.stdout|float is > 80
